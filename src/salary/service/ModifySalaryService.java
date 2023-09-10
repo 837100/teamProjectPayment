@@ -4,7 +4,7 @@ import java.sql.Connection;
 
 import jdbc.connection.ConnectionProvider;
 import salary.dao.SalaryDao;
-import salary.model.SalaryDetail;
+import salary.model.Salary;
 
 public class ModifySalaryService {
 	private SalaryDao salaryDao = new SalaryDao();
@@ -16,7 +16,13 @@ public class ModifySalaryService {
 			conn = ConnectionProvider.getConnection();
 			conn.setAutoCommit(false);
 			
-			SalaryDetail = salaryDao.
+			Salary salary = salaryDao.selectById(conn, modReq.getEmp_no());
+			if (salary == null) {
+				
+					
+				}
+			}
+			
 		}
 	}
 }
