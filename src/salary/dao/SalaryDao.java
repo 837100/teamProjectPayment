@@ -111,4 +111,23 @@ public class SalaryDao {
 			return new Date(date.getTime());
 		return null;
 	}
+	
+	public int update(Connection conn, String emp_no, int base_pay, int food, int duty_charge, int transport, int bonus) throws SQLException {
+	    try (PreparedStatement pstmt = conn.prepareStatement("update salary_item set base_pay = ?, food = ?, duty_charge = ?, transport = ?, bonus = ? where emp_no = ?")) {
+	        pstmt.setInt(1, base_pay);
+	        pstmt.setInt(2, food);
+	        pstmt.setInt(3, duty_charge);
+	        pstmt.setInt(4, transport);
+	        pstmt.setInt(5, bonus);
+	        pstmt.setString(6, emp_no);
+	        return pstmt.executeUpdate();
+	    }
+	}
+	
+	public int delete(Connection conn, int emp_no) throws SQLException {
+		try (PreparedStatement pstmt = conn.prepareStatement("delete from salary_item where emp_no = ?")){
+			pstmt.setInt(1, emp_no);
+			return pstmt.executeUpdate();
+		}
+	}
 }
